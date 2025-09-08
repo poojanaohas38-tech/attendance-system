@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Attendance Marking</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f4f9; text-align:center; padding:40px; }
+    h1 { color:#333; }
+    form { background:#fff; padding:20px; border-radius:10px; display:inline-block; }
+    input, button { padding:10px; margin:5px; width:200px; }
+    button { background:#007bff; color:white; border:none; cursor:pointer; }
+    button:hover { background:#0056b3; }
+  </style>
+</head>
+<body>
+  <h1>Attendance Marking</h1>
+  <form>
+    <input type="text" id="name" placeholder="Enter your name" required><br>
+    <button type="button" onclick="markAttendance()">Mark Attendance</button>
+  </form>
+  <h2>Attendance List</h2>
+  <ul id="list"></ul>
+
+  <script>
+    function markAttendance() {
+      let name = document.getElementById('name').value;
+      if(name.trim() !== "") {
+        let li = document.createElement("li");
+        li.textContent = name + " - Present";
+        document.getElementById('list').appendChild(li);
+        document.getElementById('name').value = "";
+      }
+    }
+  </script>
+</body>
+</html>
