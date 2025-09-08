@@ -16,6 +16,24 @@
     .out { color:red; }
   </style>
 </head>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDxxxxxx",
+    authDomain: "attendance-system.firebaseapp.com",
+    databaseURL: "https://attendance-system-default-rtdb.firebaseio.com",
+    projectId: "https://attendance-system-58473-default-rtdb.firebaseio.com",
+    storageBucket: "attendance-system.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abcd1234"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+</script>
 <body>
   <h1>Attendance Marking</h1>
   <form>
