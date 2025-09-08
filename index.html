@@ -2,31 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Attendance Marking</title>
+  <title>Attendance System</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#f4f4f9; text-align:center; padding:40px; }
+    body { font-family: Arial, sans-serif; background:#f7f9fc; text-align:center; padding:40px; }
     h1 { color:#333; }
-    form { background:#fff; padding:20px; border-radius:10px; display:inline-block; }
-    input, button { padding:10px; margin:5px; width:200px; }
-    button { background:#007bff; color:white; border:none; cursor:pointer; }
+    form, .records { background:#fff; padding:20px; border-radius:10px; display:inline-block; margin:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    input, button { padding:10px; margin:5px; width:220px; }
+    button { background:#007bff; color:white; border:none; cursor:pointer; border-radius:5px; }
     button:hover { background:#0056b3; }
+    ul { list-style:none; padding:0; text-align:left; }
+    li { padding:5px; border-bottom:1px solid #ddd; }
+    .in { color:green; }
+    .out { color:red; }
   </style>
 </head>
 <body>
   <h1>Attendance Marking</h1>
   <form>
     <input type="text" id="name" placeholder="Enter your name" required><br>
-    <button type="button" onclick="markAttendance()">Mark Attendance</button>
+    <button type="button" onclick="clockIn()">Clock In</button>
+    <button type="button" onclick="clockOut()">Clock Out</button>
   </form>
-  <h2>Attendance List</h2>
-  <ul id="list"></ul>
+
+  <div class="records">
+    <h2>Attendance Records (Today)</h2>
+    <ul id="list"></ul>
+  </div>
 
   <script>
-    function markAttendance() {
-      let name = document.getElementById('name').value;
-      if(name.trim() !== "") {
+    function getTime() {
+      let now = new Date();
+      return now.toLocaleTimeString();
+    }
+
+    function clockIn() {
+      let name = document.getElementById('name').value.trim();
+      if(name !== "") {
         let li = document.createElement("li");
-        li.textContent = name + " - Present";
+        li.innerHTML = <span class="in">${name} - Clocked IN at ${getTime()}</span>;
+        document.getElementById('list').appendChild(li);
+        document.getElementById('name').value = "";
+      }
+    }
+
+    function clockOut() {
+      let name = document.getElementById('name').value.trim();
+      if(name !== "") {
+        let li = document.createElement("li");
+        li.innerHTML = <span class="out">${name} - Clocked OUT at ${getTime()}</span>;
         document.getElementById('list').appendChild(li);
         document.getElementById('name').value = "";
       }
